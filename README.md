@@ -1,7 +1,7 @@
 # TIL
 
-Today I Learned
+Studying for AI research
 
-## Git
+## Field
 
-Git 공부 시작
+AI Vision and Security(for adversarial Attack)
