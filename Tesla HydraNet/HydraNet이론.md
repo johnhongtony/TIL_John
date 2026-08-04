@@ -1,5 +1,9 @@
 # 테슬라의 인공지능 신경계: 하이드라넷(HydraNet)과 자율주행의 핵심 원리
 
+본 자료는 테슬라 AI Day에서 공개된 기술 정보를 바탕으로 자율주행 시스템의 핵심 아키텍처를 상세히 분석합니다. 주요 내용으로 8개 카메라의 이미지를 벡터 공간으로 변환하여 처리하는 하이드라넷(HydraNets) 구조와 그 구성 요소인 RegNet, BiFPN의 역할을 설명합니다. 특히 인간의 시각 처리 방식을 모방하여 단일 프레임의 한계를 극복하고, 시간과 공간 정보를 모두 활용하는 Spatial RNN 기술의 중요성을 강조합니다. 이를 통해 장애물에 가려진 사물을 정확히 예측하고 거리와 속도를 정밀하게 측정하는 테슬라만의 딥러닝 알고리즘 발전 과정을 다룹니다. 최종적으로는 복잡한 도로 환경을 실시간으로 파악하기 위해 여러 카메라 정보를 통합하고 최적화하는 소프트웨어 스택의 전반적인 메커니즘을 요약하여 전달합니다.
+
+
+
 ## 1. 도입: 도로 위를 달리는 '살아있는 생명체', 테슬라
 테슬라는 자사 자동차를 단순히 기계적인 이동 수단이 아니라, 주변 환경을 스스로 인지하고 실시간으로 반응하는 **'살아있는 생명체'**로 정의합니다. 이 생명체의 가장 중요한 감각은 '시각'이며, 자율주행의 핵심 목표는 8개의 카메라로부터 들어오는 가공되지 않은 로우(Raw) 데이터를 효율적으로 처리하는 고도의 신경망 아키텍처를 설계하는 것입니다.
 
@@ -61,5 +65,9 @@
 [x] 시공간 통합(Spatial RNN): 운동학 정보를 활용하여 격자 지도 위에 과거와 현재 정보를 융합
 테슬라는 여기서 멈추지 않고, 현재의 조밀한 래스터 이미지 처리 방식에서 벗어나 필요한 핵심 포인트만 집어 처리하는 'Point-by-point' 방식을 연구하고 있습니다. 이는 연산 자원 소모를 획기적으로 줄이고 레이턴시를 최소화하여 더욱 민첩한 자율주행을 가능하게 할 것입니다.
 
+Thesis:
+RegNet: Jing Xu, Yu Pan, Xinglin Pan, Steven Hoi, Fellow, IEEE, Zhang Yi, Fellow, IEEE, and Zenglin Xu∗ "Self-Regulated Network for Image Classification"
 
 출처:https://notebook.google.com/notebook/94df7e2e-2433-442a-bff9-6821df9a0ca4/artifact/d00f7aa4-ed4e-474a-997b-1a0e5066d779?utm_source=nlm_web_share&utm_medium=google_oo&utm_campaign=art_share_1&utm_content=&utm_smc=nlm_web_share_google_oo_art_share_1_
+
+참고 포스팅:https://swiftcam.tistory.com/411
