@@ -257,26 +257,27 @@ Adversarial attack은 바로 이 민감도를 이용한다.
 
 ### 19. 최대 우도 추정(MLE)
 지금까지 배운 내용 연결  
-<p align="center">·확률변수  </p>
+<p align="center">· 확률변수  </p>
    <p align="center">↓  </p>
-<p align="center">·확률분포  </p>
+<p align="center">· 확률분포  </p>
    <p align="center">↓  </p>
-<p align="center">·기대값 / 분산  </p>
+<p align="center">· 기대값 / 분산  </p>
    <p align="center">↓  </p>
-<p align="center">·정규분포 등 확률모델  </p>
+<p align="center">· 정규분포 등 확률모델  </p>
    <p align="center">↓  </p>
-<p align="center">·관측된 데이터가 등장  </p>
+<p align="center">· 관측된 데이터가 등장  </p>
    <p align="center">↓  </p>
-<p align="center">·"이 데이터를 가장 잘 설명하는 모델은?"  </p>
+<p align="center">· "이 데이터를 가장 잘 설명하는 모델은?"  </p>
    <p align="center">↓  </p>
-<p align="center">·MLE  </p>
+<p align="center">· MLE  </p>
 
 #### ① MLE를 한 문장으로 설명
 Maximum Likelihood Estimation이 무엇인가?
 
   - MLE: 관측된 데이터가 가장 높은 확률로 발생하도록 만드는 모델의 파라미터를 찾는 방법
   * 관측 데이터 D는 이미 존재 → 여러 후보 θ를 넣어봄 → "어떤 θ일 때 지금 데이터를 가장 잘 설명하지?" → 그 θ를 선택  
-  **  예를 들어 정규분포의 평균 μ를 찾는다면, 관측 데이터: 3, 4, 5, 6, 7 | μ = 3? μ = 5? μ = 10? 각각의 μ에 대해 데이터가 나타날 가능도를 계산하고, 가장 큰 Likelihood를 만드는 μ를 찾는 것이다.
+  **  예를 들어 정규분포의 평균 μ를 찾는다면,  
+  관측 데이터: 3, 4, 5, 6, 7 | μ = 3? μ = 5? μ = 10? 각각의 μ에 대해 데이터가 나타날 가능도를 계산하고, 가장 큰 Likelihood를 만드는 μ를 찾는 것이다.
 
 
 #### ② Probability와 Likelihood의 차이
@@ -299,8 +300,7 @@ Maximum Likelihood Estimation이 무엇인가?
 MLE가 우리가 사용하는 Loss Function과 어떤 관계가 있을 것 같은가?
 
   - 딥러닝에서는 일반적으로:  
-  $$\hat{\theta}_{\text{MLE}} = \operatorname*{argmax}_{\theta} P(D \mid \theta)$$  
-  $$\max_{\theta} P(D \mid \theta)$$ 인 Likelihood를 최대화하고 싶다.  
+  $$\mathrm{MLE} = \arg\max_{\theta} P(D \mid \theta)$$ 인 Likelihood를 최대화하고 싶다.  
    그런데 딥러닝은 보통 Loss를 최소화한다.
 
   그래서: $$\max_{\theta} P(D \mid \theta)$$ 에서 → Log를 취하면 $$\max_{\theta} \log P(D \mid \theta)$$ → 부호를 바꾸면 $$\min_{\theta} -\log P(D \mid \theta)$$ 즉, Negative Log-Likelihood(NLL)가 됨.
