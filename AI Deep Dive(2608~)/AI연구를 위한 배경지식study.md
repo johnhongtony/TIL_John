@@ -204,7 +204,7 @@ Adversarial attack은 바로 이 민감도를 이용한다.
  · 균등 분포
    - 균등 분포 → 생김새가 균등하게 평평한 분포(즉 주사위, 동전 면 등 각각 사건의 확률이 균등한 분포도 = 합은 '1'이 됨)
    - 평균: 1/2(a+b)   (a:시작값, b:끝값)
-   - 분산: 1/12(b-a)^2 
+   - 분산: 1/12(b-a) $$^2$$ 
 
  · 정규 분포
    - 정규분포 → 평균을 중심으로 대칭적인 종 모양의 확률분포.
@@ -215,18 +215,18 @@ Adversarial attack은 바로 이 민감도를 이용한다.
 📚26.08.11 오늘의 TIL
 최근 study에 대한 내용 복습 및 핵심추리기
  
- ### ① 확률변수란?
+ #### ① 확률변수란?
    - 실제 어떠한 사건의 확률적인 결과를 숫자로 대응시키는 함수.
 
- ### ② 확률분포란?
+ #### ② 확률분포란?
    - 확률변수가 가질 수 있는 모든값과 이러한 값이 나타날 확률을 정리한 함수
 
- ### ③ 기대값이란?
+ #### ③ 기대값이란?
    - 확률변수가 가져올 수 있는 모든 값들의 확률 가중평균
    - 표본을 실제로 뽑아서 구한 '산술평균'과 달리, 확률모델 전체 집단에 대한 평균
    - 딥러닝에서의 핵심 활용:손실 함수(Loss Function) 최적화: 딥러닝 모델 학습의 본질은 데이터 분포 $p(x, y)$ 전체에 대한 손실의 기대값을 최소화하는 파라미터 $\theta$를 찾는 과정, $$\min_{\theta} \mathbb{E}_{(x,y) \sim p_{\text{data}}} [\mathcal{L}(f_\theta(x), y)]$$
 
- ### ④ 분산이란?
+ #### ④ 분산이란?
    - 확률변수의 값들이 기대값(평균)으로부터 얼마나 널리 퍼져 있는지를 나타내는 척도
    - 데이터의 가변성이나 불확실성(Uncertainty)의 정도를 측정
    - $\text{Var}(X)$ 또는 $\sigma^2$으로 표기하며, 분산에 제곱근을 취한 값이 표준편차(Standard Deviation, $\sigma$)
@@ -245,17 +245,19 @@ Adversarial attack은 바로 이 민감도를 이용한다.
 다만 아직 논문 주제로 확정하면 안 된다.
 나중에 관련 논문을 조사하고 baseline을 확인한 뒤 판단해야 한다.)
 
- ### ⑤ Jacobian이란?
+ #### ⑤ Jacobian이란?
    - 여러 개의 입력을 받아 여러 개의 출력을 내놓는 다변수 벡터 함수에서, 모든 출력의 모든 입력에 대한 1차 편도함수를 행렬로 모아놓은 것
 
- ### +⑥ 왜 Adversarial Attack에서 입력 x에 대한 모델의 Gradient/Jacobian이 중요할까?
+ #### +⑥ 왜 Adversarial Attack에서 입력 x에 대한 모델의 Gradient/Jacobian이 중요할까?
     - 입력 $x$에 대한 Gradient/Jacobian은 모델의 예측을 오작동시키기 위해 "입력 픽셀을 어느 방향으로 얼마만큼 미세하게 변형해야 손실이 가장 극대화되는지" 알려주는 지형도(Map)이자 민감도 지표이기 때문에
     
    - Gradient와 Jacobian의 차이:Gradient ($\nabla_{\mathbf{x}} f$): 출력이 단 하나의 스칼라값(예: Loss값 1개)일 때의 미분 벡터($1 \times n$)
 
    - Jacobian ($J$): 출력이 여러 개로 이루어진 벡터(예: Softmax를 거친 $m$개 클래스별 확률 값)일 때의 미분 행렬. ($m \times n$)
 
+
 📚26.08.12 오늘의 TIL
+
 ### 19. 최대 우도 추정(MLE)
 지금까지 배운 내용 연결
 ·확률변수
@@ -272,7 +274,7 @@ Adversarial attack은 바로 이 민감도를 이용한다.
    ↓
 ·MLE
 
-### ① MLE를 한 문장으로 설명
+#### ① MLE를 한 문장으로 설명
 Maximum Likelihood Estimation이 무엇인가?
 
   - MLE: 관측된 데이터가 가장 높은 확률로 발생하도록 만드는 모델의 파라미터를 찾는 방법
@@ -280,14 +282,14 @@ Maximum Likelihood Estimation이 무엇인가?
   **  예를 들어 정규분포의 평균 μ를 찾는다면, 관측 데이터: 3, 4, 5, 6, 7 | μ = 3? μ = 5? μ = 10? 각각의 μ에 대해 데이터가 나타날 가능도를 계산하고, 가장 큰 Likelihood를 만드는 μ를 찾는 것이다.
 
 
-### ② Probability와 Likelihood의 차이
+#### ② Probability와 Likelihood의 차이
 이게 오늘 가장 중요
 예를 들어, P(D∣θ) 에서 데이터를 고정하면? θ를 고정하면? 각각 무엇을 의미하는지 설명
 
    - D고정 시 위에서 설명한 MLE이며, θ를 고정했을 땐 기존 학습했던 probability가 됨. 둘 다 조건부 확률값이지만, likelihood인 MLE는 합이 '1'이 아니기 때문에 엄연히 확률분포라 할 수 없음.
 
 
-### ③ 왜 Log를 사용하는가?
+#### ③ 왜 Log를 사용하는가?
 왜 $$\max_{\theta} P(D \mid \theta)$$ 를 그대로 계산하지 않고 $$\max_{\theta} \log P(D \mid \theta)$$ 로 바꾸는지
 
   - log의 성질로 인해 $$\hat{x} = \operatorname*{argmax}_{x} p(z_1 \mid x) p(z_2 \mid x) = \frac{z_1 + z_2}{2}$$ 에 대한 각각의 식의 각 항의 log를 취해 덧셈으로 바꿔줄 수 있음. (또한, log를 취했을 때 MSE와 연결됨) 
@@ -295,7 +297,7 @@ Maximum Likelihood Estimation이 무엇인가?
   - Underflow를 방지 (ex. 0.001×0.002×0.0001×⋯ 처럼 계속 곱해지면 값이 엄청 작아져 컴퓨터 계산에서 문제가 생길 수 있으나, Log를 취하면 안정적이다. )
 
 
-### ④ MLE와 딥러닝의 연결
+#### ④ MLE와 딥러닝의 연결
 MLE가 우리가 사용하는 Loss Function과 어떤 관계가 있을 것 같은가?
 
   - 딥러닝에서는 일반적으로: $$\hat{\theta}_{\text{MLE}} = \operatorname*{argmax}_{\theta} P(D \mid \theta)$$$$\max_{\theta} P(D \mid \theta)$$ 인 Likelihood를 최대화하고 싶다.
@@ -316,7 +318,7 @@ MLE가 우리가 사용하는 Loss Function과 어떤 관계가 있을 것 같�
    - 각 입력 벡터 요소가 각 출력 벡터 요소에 어떠한 영향을 주는지 따로 계산하기 때문에 결과가 행렬형태가 됌
    * ex) 입력이 3개(x, y, z), 출력이 2
 
-### 향후 MLE와의 연결고리 정리 
+#### 향후 MLE와의 연결고리 정리 
   MLE
   ↓
   Negative Log Likelihood
