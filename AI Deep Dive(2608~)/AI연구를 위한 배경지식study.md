@@ -303,14 +303,18 @@ MLE가 우리가 사용하는 Loss Function과 어떤 관계가 있을 것 같�
   $$\mathrm{MLE} = \arg\max_{\theta} P(D \mid \theta)$$ 인 Likelihood를 최대화하고 싶다.  
    그런데 딥러닝은 보통 Loss를 최소화한다.
 
-  그래서: $$\max_{\theta} P(D \mid \theta)$$ 에서 → Log를 취하면 $$\max_{\theta} \log P(D \mid \theta)$$ → 부호를 바꾸면 $$\min_{\theta} -\log P(D \mid \theta)$$ 즉, Negative Log-Likelihood(NLL)가 됨.
-   * 그리고 우리가 사용하는 여러 Loss는 결국 어떤 확률분포를 가정했느냐에 따라 NLL에서 나온다.  
+  그래서: $$\max_{\theta} P(D \mid \theta)$$ 에서  
+  → Log를 취하면 $$\max_{\theta} \log P(D \mid \theta)$$  
+  → 부호를 바꾸면 $$\min_{\theta} -\log P(D \mid \theta)$$  
+  즉, Negative Log-Likelihood(NLL)가 됨.  
+
+   ** 그리고 우리가 사용하는 여러 Loss는 결국 어떤 확률분포를 가정했느냐에 따라 NLL에서 나온다.  
    ** Classification의 경우 MLE → NLL → Cross Entropy  
    ** Regression의 경우 MLE → Gaussian assumption → NLL → MSE  
 
 
 ∴ 현재 우리가 관측한 데이터를 가장 그럴듯하게 만들어 주는 파라미터 θ는 무엇인가?
- → 이를 수식으로 쓰면 $$\theta^* = \underset{\theta}{\operatorname{argmax}} P(D \mid \theta)$$ , 여기서 D는 관측한 데이터다.
+ → 이를 수식으로 쓰면 $$\theta^{*} = \arg\max_{\theta} P(D \mid \theta)$$ , 여기서 D는 관측한 데이터다.
  →→ 즉 Likelihood를 가장 크게 만드는 파라미터를 찾는 것이 최대우도추정
 
 
@@ -319,17 +323,17 @@ MLE가 우리가 사용하는 Loss Function과 어떤 관계가 있을 것 같�
    * ex) 입력이 3개(x, y, z), 출력이 2
 
 #### 향후 MLE와의 연결고리 정리 
-  MLE
-  ↓
-  Negative Log Likelihood
-  ↓
-  Cross Entropy Loss
-  ↓
-  $$\nabla_{\theta} \mathcal{L}$$
-  ↓
-  Backpropagation
-  ↓
-  $$\nabla_{x} \mathcal{L}$$
-  ↓
-  FGSM / PGD
+  <p align="center">MLE</p>
+  <p align="center">↓</p>
+  <p align="center">Negative Log Likelihood</p>
+  <p align="center">↓</p>
+  <p align="center">Cross Entropy Loss</p>
+  <p align="center">↓</p>
+  <p align="center">$$\nabla_{\theta} \mathcal{L}$$</p>
+  <p align="center">↓</p>
+  <p align="center">Backpropagation</p>
+  <p align="center">↓</p>
+  <p align="center">$$\nabla_{x} \mathcal{L}$$</p>
+  <p align="center">↓</p>
+  <p align="center">FGSM / PGD</p>
 
