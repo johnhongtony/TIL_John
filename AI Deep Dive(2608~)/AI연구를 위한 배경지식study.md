@@ -224,13 +224,14 @@ Adversarial attack은 바로 이 민감도를 이용한다.
  #### ③ 기대값이란?
    - 확률변수가 가져올 수 있는 모든 값들의 확률 가중평균
    - 표본을 실제로 뽑아서 구한 '산술평균'과 달리, 확률모델 전체 집단에 대한 평균
-   - 딥러닝에서의 핵심 활용:손실 함수(Loss Function) 최적화: 딥러닝 모델 학습의 본질은 데이터 분포 $p(x, y)$ 전체에 대한 손실의 기대값을 최소화하는 파라미터 $\theta$를 찾는 과정, $$\theta^* = \arg\min_{\theta} \mathbb{E}_{(x,y) \sim p_{\text{data}}} [\mathcal{L}(f_\theta(x), y)]$$
-
+   - 딥러닝에서의 핵심 활용:손실 함수(Loss Function) 최적화: 딥러닝 모델 학습의 본질은 데이터 분포 $p(x, y)$ 전체에 대한 손실의 기대값을 최소화하는 파라미터 $\theta$를 찾는 과정. 
+   $$\min_{\theta} \mathbb{E}_{(x,y) \sim p_{\text{data}}} [\mathcal{L}(f_\theta(x), y)]$$
+   $$\theta^* = \arg\min_{\theta} \mathbb{E}_{(x,y) \sim p_{\text{data}}} [\mathcal{L}(f_\theta(x), y)]$$
  #### ④ 분산이란?
    - 확률변수의 값들이 기대값(평균)으로부터 얼마나 널리 퍼져 있는지를 나타내는 척도
    - 데이터의 가변성이나 불확실성(Uncertainty)의 정도를 측정
    - $\text{Var}(X)$ 또는 $\sigma^2$으로 표기하며, 분산에 제곱근을 취한 값이 표준편차(Standard Deviation, $\sigma$)
-   - 수학적 정의:$$\text{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2] = \mathbb{E}[X^2] - (\mathbb{E}[X])^2$$
+   - 수학적 정의: $$\text{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2] = \mathbb{E}[X^2] - (\mathbb{E}[X])^2$$
    - 필터링 모델 개발에서의 중요성:모델 불확실성(Uncertainty) 기반 탐지로 드롭아웃(Dropout)을 켠 상태에서 하나의 입력 $x$에 대해 여러 번 추론(Monte Carlo Dropout)을 수행할 때, 정상 입력은 예측 확률의 분산이 매우 작지만, 적대적 예제는 추론할 때마다 결과가 요동쳐 출력 분산이 매우 크게 나타나는 경향이 있음. 이를 이용해 적대적 공격을 필터링할 수 있음
    (AI첨삭 - Monte Carlo Dropout을 이용한 uncertainty estimation 자체는 가능한 접근이지만,
 "정상 = 낮은 분산, adversarial = 높은 분산"
