@@ -355,7 +355,8 @@ MLE가 우리가 사용하는 Loss Function과 어떤 관계가 있을 것 같�
  · MAP의 개념
   - Maximum A Posteriori의 줄임말로 데이터와 사전 확률을 모두 고려해 parameter를 추정하고, 베이즈 정리를 기반으로 함.  
   - MLE와 달리 사전분포(prior)를 반영하여 더 현실적인 추정이 가능하도록 함.  
-  - 수식: $\hat{\theta}_{\text{MAP}} = \arg\max_{\theta} P(\theta \mid X)$
+  - 수식:  
+  $$\hat{\theta}_{\text{MAP}} = \arg\max_{\theta} P(\theta \mid X)$$  
     즉, 데이터 X가 주어졌을 때 파라미터 θ의 사후 확률이 최대가 되는 값을 찾음  
   - 딥러닝에서는 parameter의 사전분포를 반영하여 최적의 가중치를 찾는데 쓰임.  
   - L2 정규화는 가중치에 대한 정규분포(prior)를 가정한 MAP추정과 동일한 효과를 냄.  
@@ -366,7 +367,7 @@ MLE가 우리가 사용하는 Loss Function과 어떤 관계가 있을 것 같�
     $$\hat{\theta}_{\text{MLE}}=\arg\max_{\theta}P(X \mid \theta)$$, 의미: 현재 관측한 데이터 X를 가장 잘 설명하는 θ를 찾는다.  
 
   - ##### MAP
-    MAP: $\hat{\theta}_{\text{MAP}} = \arg\max_{\theta} P(\theta \mid X)$ 에서
+    MAP: ^θMAP​=argθmax​P(θ∣X) 에서
     베이즈 정리를 적용하면, $$P(\theta \mid X) = \frac{P(X \mid \theta)P(\theta)}{P(X)}$$  
     여기서 P(X)는 θ에 대해 상수이므로, $\hat{\theta}_{\text{MAP}} = \arg\max_{\theta} P(X \mid \theta) P(\theta)$  
 
