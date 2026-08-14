@@ -366,9 +366,9 @@ MLE가 우리가 사용하는 Loss Function과 어떤 관계가 있을 것 같�
     $$\hat{\theta}_{\text{MLE}}=\arg\max_{\theta}P(X \mid \theta)$$, 의미: 현재 관측한 데이터 X를 가장 잘 설명하는 θ를 찾는다.  
 
   - ##### MAP
-    MAP:$$\hat{\theta}_{\text{MAP}} = \operatorname*{argmax}_{\theta} P(\theta \mid X)$$ 에서
+    MAP: $\hat{\theta}_{\text{MAP}} = \arg\max_{\theta} P(\theta \mid X)$ 에서
     베이즈 정리를 적용하면, $$P(\theta \mid X) = \frac{P(X \mid \theta)P(\theta)}{P(X)}$$  
-    여기서 P(X)는 θ에 대해 상수이므로, $$\hat{\theta}_{\text{MAP}} = \operatorname*{argmax}_{\theta} P(X \mid \theta)P(\theta)$$  
+    여기서 P(X)는 θ에 대해 상수이므로, $\hat{\theta}_{\text{MAP}} = \arg\max_{\theta} P(X \mid \theta) P(\theta)$  
 
 
 
