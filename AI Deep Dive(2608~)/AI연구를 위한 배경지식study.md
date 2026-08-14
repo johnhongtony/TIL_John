@@ -320,7 +320,20 @@ MLE가 우리가 사용하는 Loss Function과 어떤 관계가 있을 것 같�
 
  · 벡터를 벡터로 미분하면 왜 결과가 행렬 형태가 되는지
    - 각 입력 벡터 요소가 각 출력 벡터 요소에 어떠한 영향을 주는지 따로 계산하기 때문에 결과가 행렬형태가 됌
-   * ex) 입력이 3개(x, y, z), 출력이 2
+   * ex) 입력이 3개(x, y, z), 출력이 2  
+
+· MLE에서 가우시안 노이즈를 더하는 이유
+ - MLE에서 가우시안 노이즈를 더하는 이유는 모델이 실제 데이터의 불확실성과 오차를 반영하도록 하기 위함.  
+가우시안 노이즈를 더하면 데이터가 완벽하게 설명되지 않는 현실적인 상황을 수학적으로 모델링할 수 있고, 이렇게 하면 MLE로 추정한 파라미터가 실제 데이터의 분포와 더 잘 맞게 되고, 오버피팅을 방지하는 효과도 있음.  
+딥러닝에서는 예측값과 실제값의 차이를 가우시안 분포로 가정해 MSE 손실함수를 유도할 때도 사용됨.  
+
+· MLE에서 가우시안 노이즈를 추가하는 것이 왜 오버피팅 방지에 도움이 되는지
+ - 가우시안 노이즈를 추가하면 모델이 데이터의 작은 변동이나 잡음을 과도하게 학습하지 않게 되어 오버피팅을 방지할 수 있습니다.  
+가우시안 노이즈를 추가하면 모델이 완벽하게 모든 데이터를 맞추려 하지 않고, 데이터의 일반적인 패턴만 학습하게 됩니다.  
+이 과정에서 노이즈는 실제 데이터에 존재하는 우연적 변동이나 측정 오차를 모방하므로, 모델이 불필요하게 복잡해지는 것을 막아줍니다.  
+결국, 노이즈를 고려한 MLE는 파라미터가 데이터의 본질적인 구조에 집중하도록 유도해, 새로운 데이터에 대한 일반화 성능이 높아집니다.  
+딥러닝에서는 입력이나 은닉층에 노이즈를 추가하는 방식(예: Dropout, Gaussian noise layer)도 오버피팅 방지에 널리 활용됩니다.  
+
 
 #### 향후 MLE와의 연결고리 정리 
   <p align="center">MLE</p>
@@ -335,5 +348,51 @@ MLE가 우리가 사용하는 Loss Function과 어떤 관계가 있을 것 같�
   <p align="center">↓</p>
   <p align="center">$$\nabla_{x} \mathcal{L}$$</p>
   <p align="center">↓</p>
-  <p align="center">FGSM / PGD</p>
+  <p align="center">FGSM / PGD</p>  
 
+
+  ## 📚26.08.14 오늘의 TIL
+  
+### 20. 최대 사후 확률(MAP)
+ · MAP의 개념
+  - Maximum A Posteriori의 줄임말로 데이터와 사전 확률을 모두 고려해 parameter를 추정하고, 베이즈 정리를 기반으로 함.  
+  - MLE와 달리 사전분포(prior)를 반영하여 더 현실적인 추정이 가능하도록 함.  
+  - 수식: $$\hat{\theta}_{\text{MAP}} = \arg\max_{\theta} P(\theta \mid X) = \arg\max_{\theta} P(X \mid \theta) P(\theta)$$
+    즉, 데이터 X가 주어졌을 때 파라미터 θ의 사후 확률이 최대가 되는 값을 찾음  
+  - 딥러닝에서는 parameter의 사전분포를 반영하여 최적의 가중치를 찾는데 쓰임.  
+  - L2 정규화는 가중치에 대한 정규분포(prior)를 가정한 MAP추정과 동일한 효과를 냄.  
+  - 이처럼 MAP은 오버피팅 방지와 더 일반화도니 모델 학습에 기여함.  
+
+ · MLE와 MAP의 비교  
+  - ##### MLE
+    $$\hat{\theta}_{\text{MLE}}=\arg\max_{\theta}P(X \mid \theta)$$  , 의미: 현재 관측한 데이터 X를 가장 잘 설명하는 θ를 찾는다.  
+
+  - ##### MAP
+    MAP : $$\hat{\theta}_{\text{MAP}} = \operatorname*{argmax}_{\theta} P(\theta \mid X)$$ 에서
+    베이즈 정리를 적용하면, $$P(\theta \mid X) = \frac{P(X \mid \theta)P(\theta)}{P(X)}$$  
+    여기서 P(X)는 θ에 대해 상수이므로,
+    $$\hat{\theta}_{\text{MAP}} = \operatorname*{argmax}_{\theta} P(X \mid \theta)P(\theta)$$  
+
+
+
+### 21. 정보 이론 기초(Entropy, Cross Entropy, KL-divergence)
+  - Entropy: 불확실성의 척도  
+  - Cross-Entropy: 두 분포 간 차이(실제 분포 P를 기준으로 할 때, 모델 분포 Q를 사용하여 데이터를 표현하는 데 필요한 평균 정보량)  
+    수식은: $$H(P,Q)=-\sum_x P(x)\log Q(x)$$ , 딥러닝에서는 보통: P: 실제 정답 분포 Q: 모델이 예측한 확률분포 가 되며, 그래서 모델의 예측이 실제 정답과 멀어질수록 Cross-Entropy Loss가 커진다.  
+  - KL발산: 한 분포가 다른 분포와 얼마나 다른지  
+  위의 것들은 딥러닝에서 주로 손실함수로 활용되어 모델의 예측 성능을 평가하고 최적화 함.
+
+
+#### 지금까지의 흐름 정리  
+
+$$\text{Function}\rightarrow\text{Derivative}\rightarrow\text{Chain Rule}\rightarrow\text{Gradient}\rightarrow\text{Loss}\rightarrow\text{Optimization}$$
+
+함수(Function)는 입력을 출력으로 변환하고,  
+미분(Derivative)은 함수의 변화율을 측정,  
+연쇄법칙(Chain Rule)은 여러 함수가 합성된 경우 미분을 계산하는 방법이고,  
+그라디언트(Gradient)는 다변수 함수에서 가장 빠르게 증가하는 방향을 나타내며,  
+손실(Loss)은 모델 예측과 실제 값의 차이를 수치로 표현하며,  
+최적화(Optimization)는 손실을 최소화하는 파라미터를 찾는 과정.  
+이 흐름이 딥러닝 모델의 학습을 가능하게 함.
+
+- 딥러닝 모델은 학습 데이터에서 정의된 목적함수(Loss)를 최소화하도록 파라미터를 조정하며, 그 결과 실제 정답에 대한 예측 성능과 일반화 성능을 높이는 것을 목표
