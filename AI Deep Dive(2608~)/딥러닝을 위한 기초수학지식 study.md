@@ -355,7 +355,8 @@ MLE가 우리가 사용하는 Loss Function과 어떤 관계가 있을 것 같�
  · MAP의 개념
   - Maximum A Posteriori의 줄임말로 데이터와 사전 확률을 모두 고려해 parameter를 추정하고, 베이즈 정리를 기반으로 함.  
   - MLE와 달리 사전분포(prior)를 반영하여 더 현실적인 추정이 가능하도록 함.  
-  - 수식: $$\hat{\theta}_{MAP} = \arg\max_{\theta} P(\theta \mid X)$$
+  - 수식:  
+  $$\hat{\theta}_{MAP} = \arg\max_{\theta} P(\theta \mid X)$$
   $$\hat{\theta}_{MAP} = \arg\max_{\theta} P(\theta \mid X)$$  
   $$\hat{\theta}_{MAP}=\arg\max_{\theta}P(\theta\mid X)$$
   $\hat{\theta}_{MAP}=\arg\max_{\theta}P(\theta\mid X)$
