@@ -5,4 +5,5 @@ jupyter nbconvert "Vanishing gradient(0916,sig,Layer2).ipynb" --to markdown
 jupyter nbconvert "Vanishing gradient(0916,sig,Layer10).ipynb" --to markdown
 jupyter nbconvert "Vanishing gradient(0916,Relu,Layer10).ipynb" --to markdown
 
+jupyter nbconvert "Loss Landscape.ipynb" --to markdown
 
