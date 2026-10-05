@@ -3,7 +3,7 @@ jupyter nbconvert ".ipynb" --to markdown
 
 jupyter nbconvert "Dropout_features(dropout0.1).ipynb" --to markdown
 jupyter nbconvert "Dropout_features(dropout0.5).ipynb" --to markdown
-jupyter nbconvert "Dropout_features(dropout0.9).ipynb" --to markdown
+jupyter nbconvert "Overfitting and Regularization.ipynb" --to markdown
 
 jupyter nbconvert "Loss Landscape.ipynb" --to markdown
 
