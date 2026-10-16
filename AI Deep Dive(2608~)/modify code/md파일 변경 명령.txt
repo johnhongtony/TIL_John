@@ -7,3 +7,8 @@ jupyter nbconvert "Overfitting and Regularization.ipynb" --to markdown
 
 jupyter nbconvert "Loss Landscape.ipynb" --to markdown
 
+jupyter nbconvert "CNN Feature map.ipynb" --to markdown
+
+
+
+
